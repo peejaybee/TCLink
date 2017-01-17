@@ -43,13 +43,12 @@ which contains files needed for building Ruby extensions.
 
   If you have difficulty on OS X El Capitan or later, you may need to
   - Install OpenSSL through Homebrew (see https://solitum.net/openssl-os-x-el-capitan-and-brew/)
-  - Link to the OpenSSL libraries (see https://solitum.net/openssl-os-x-el-capitan-and-brew/)
-    ```
-    $ cd /usr/local/include
-    $ ln -s ../opt/openssl/include/openssl .
-    ```
-  - Set SSL_CERT_PATH to point to a valid SSL certificate at install time (You may need to export the certs from the OS X keystore. openssl-osx-ca makes this easy and is available on homebrew):
-  ```SSL_CERT_PATH=/usr/local/etc/openssl/cert.pem gem install tclink```
+  - Specify the path to Homebrew OpenSSL's headers via `--with-cppflags=-I/usr/local/opt/openssl/include`
+  - Specify the path to Homebrew OpenSSL's certificate bundle via `SSL_CERT_PATH=/usr/local/etc/openssl/cert.pem` 
+
+Putting it all together:
+
+    SSL_CERT_PATH=/usr/local/etc/openssl/cert.pem gem install tclink -- --with-cppflags=-I/usr/local/opt/openssl/include
 
 
 ## Testing
